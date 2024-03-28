@@ -1,0 +1,47 @@
+version: "3.8"
+
+services:
+  postgres:
+    container_name: streampanel-platform-postgres
+    image: postgres:16-alpine
+    restart: always
+    ports:
+      - "5432:5432"
+    volumes:
+      - data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    healthcheck:
+      test:
+        - CMD-SHELL
+        - pg_isready --dbname=${POSTGRES_DB} --username=${POSTGRES_USER}
+      interval: 10s
+      timeout: 5s
+      retries: 3
+
+  # redis:
+  #   container_name: streampanel-platform-redis
+  #   image: redis:7-alpine
+  #   ports:
+  #     - "6379:6379"
+
+  # mailpit:
+  #   container_name: streampanel-platform-mailpit
+  #   image: axllent/mailpit:latest
+  #   restart: always
+  #   ports:
+  #     - "1025:1025"
+  #     - "8025:8025"
+  # web-app:
+  #   container_name: streampanel-platform-web-app
+  #   build: .
+  #   image: test2:latest
+  #   ports:
+  #     - "3000:3000"
+  #   depends_on:
+  #     - postgres
+
+volumes:
+  data:
