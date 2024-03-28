@@ -28,13 +28,12 @@ export const HeroSection = () => {
       <Center minHeight="100vh">
         <Container as={Stack} maxW="container.lg" textAlign="center" align="center">
           <Heading size="4xl" mb={4}>
-            Unleash your apps effortlessly. <GradientText>with StreamPanelanelanel</GradientText>
+          Unleash Next-Gen Server Control <GradientText>with StreamPanel</GradientText>
           </Heading>
 
           <Container maxW="container.md" textAlign="center">
             <Text fontSize="xl">
-              Our expertise ensures your dedicated cloud space is set up,
-              managed, monitored, and scaled with precision.
+            Let us manage your dedicated environment, from launch to growth. (Focuses on ease of use and scalability)
             </Text>
           </Container>
 

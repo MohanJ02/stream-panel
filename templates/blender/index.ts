@@ -8,7 +8,6 @@ export const generate = ({ projectName }: Input) => {
     data: {
       projectName,
       serviceName: 'blender',
-      env: [`TITLE=StreamPanel Client`].join('\n'),
       source: {
         type: 'image',
         image: 'lscr.io/linuxserver/blender:latest',

@@ -1,5 +1,5 @@
 import { Metadata } from 'next';
-import { Providers } from './components';
+import { Providers } from './providers'
 
 export const metadata: Metadata = {
   title: 'StreamPanel',

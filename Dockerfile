@@ -31,7 +31,6 @@ COPY . .
 ENV NEXT_TELEMETRY_DISABLED 1
 
 RUN pnpm run build
-# Add Prisma migration and deploy commands here
 RUN npx prisma migrate deploy
 
 # Production image, copy all the files and run next

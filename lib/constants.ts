@@ -1,7 +1,7 @@
 import { Plan } from '@/types';
 
 export const STRIPE_API_VERSION = '2023-10-16';
-export const STRIPE_APP_NAME = 'Jeevops Platform';
+export const STRIPE_APP_NAME = 'Steam Panel';
 export const STRIPE_SECRET_KEY = process.env.STRIPE_SECRET_KEY;
 
 export const IS_PRODUCTION = process.env.NODE_ENV === 'production';
