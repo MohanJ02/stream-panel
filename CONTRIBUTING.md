@@ -17,39 +17,84 @@ Once you've discovered an issue to work on:
 
 ### Local Setup for Development
 
+#### Prerequisites
+
 - We use `pnpm` package manager. Get it [here](https://pnpm.io/installation).
 - Make sure Docker up and running.`
-- Fork and clone the repository
 
-#### Install dependencies
+#### Let's begin
 
-```bash
+- Firstly fork the repository and clone the forked repo to your system
+
+- Change the directory to the project and install the dependencies
+
+```bash 
 cd stream-panel
 pnpm install
 ```
 
-#### Setup environment variables
-
-For the first time, you need some default environment variables:
+- We need to setup environment variables, so first copy env the file as below
 
 ```bash
 cp .env.development.example .env
 ```
 
-#### If you want to use magic link login
+- Now make changes to .env file that you copied.
+
+> Note: 
+  For email authentication we can use either `magic link` or `Github/Google Oauth`
+
+- #### If you want to use magic link login
 
 Uncomment the `SMPT` section in `.env` file. By default we already set Mailpit for you.
 
 The mailbox can be reach at http://localhost:8025
 
 
-#### If you want to use GitHub login
+- #### If you want to use GitHub login
 
-Uncomment the `GITHUB` section in .env file. Follow this [documentation](https://docs.github.com/en/apps/oauth-apps/building-oauth-apps/creating-an-oauth-app) to configure the authentication.
+Uncomment the `GITHUB` section in .env file. Follow this [documentation](https://docs.github.com/en/apps/oauth-apps/building-oauth-apps/creating-an-oauth-app) to configure the authentication. 
+
+You can follow the same approch for Google Oauth as well.
 
 #### Let's get started!
 
-Then, run the development server:
+For example, if you've setup the .env to use magic link then the .env would look something like this:
+```
+NEXTAUTH_SECRET=topsecret
+NEXTAUTH_URL=http://localhost:3000
+ 
+# --- Start for development
+POSTGRES_DB=postgres
+POSTGRES_USER=postgres
+POSTGRES_PASSWORD=password
+POSTGRES_PORT=5432
+# --- End for development
+
+ENVIRONMENT=localhost
+
+# PostgreSQL database URL 
+DATABASE_URL="postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@${ENVIRONMENT}:${POSTGRES_PORT}/${POSTGRES_DB}?schema=public"
+
+# Use this one for Github/Google Oauth and syncing
+# GITHUB_TOKEN=
+# GITHUB_ID=
+# GITHUB_SECRET=
+# GITHUB_ORG=
+# GOOGLE_CLIENT_ID=
+# GOOGLE_CLIENT_SECRET=
+
+# Use this one for magic link authentication
+SMTP_USER=mailpit
+SMTP_PASSWORD=topsecret
+SMTP_HOST=0.0.0.0
+SMTP_PORT=1025
+EMAIL_FROM="StreamPanel Team <noreply@example.com>"
+
+EASYPANEL_URL=
+EASYPANEL_API_KEY=
+```
+Then, start the development server:
 
 ```bash
 pnpm dev
@@ -57,17 +102,22 @@ pnpm dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser and start developing.
 
-## Further instructions
 
-Currently we leave only EasyPanel helper actions along with its templates. This is heavy and repetitive task that's why we don't want to add all the templates from EasyPanel.
+#### To use Easypanel function
 
-The main idea of this STREAM PANEL is, you can use it to quickly start developing a product/service and serve your customers right away.
+If you want to deploy templates/projects in the stream-panel, you first need to setup easypanel and then get an API key.
 
-It does not mean to replace the EasyPanel product.
+To setup easypanel, checkout: https://easypanel.io/ 
 
-To use EasyPanel function, you need to obtain an API key and set up the .env file:
+Finally update the .env file with following varaibles configured
 
 ```bash
 EASYPANEL_URL=https://your-easypanel.url
 EASYPANEL_API_KEY=your-easypanel-apikey
 ```
+
+### Contributing A Patch
+
+1. Submit an issue describing your proposed change
+2. A reviewer will respond to your issue promptly.
+3. Submit a pull request.
